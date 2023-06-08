@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <div class="main-container">
+        <div>
+            <a href="{% url 'newHabit'%}">Create a habit</a>
+            <hr>
+        </div>
+        
+        <div>
+        
+        
+        {% for habit in habits%}
+        
+            <h3><a href="{% url 'habitDetails' habit.id %}">{{habit.name}}</a></h3>
+            <p>Goal: {{habit.target}}</p>
+            <p><a href="{% url 'newRecord' habit.id  %}">Enter your daily record here</p></a>
+            <hr>
+        
+    
+        {%endfor%}
+        </div>
+
+        </div>
+    {% else %}
+        <div class="box">
+            <h2>Get Started</h2>
+            <p class="register"><a href="accounts/register"> Sign Up</a></p>
+            <p class="login"><a href="accounts/login"> Sign In</a></p>
+        </div>
+        
+    {% endif %}
+{% endblock %}

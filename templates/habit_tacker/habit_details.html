@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<div class="habitRecord">
+    <div>
+        <h3>{{ habit }}</h3>
+        
+    </div>
+    <div>
+        <h3>Logs</h3>
+        {% for habitRecord in habit.HabitRecords.all %}
+            <p>{{habitRecord.record_date}}</p>
+            <p>Your target: {{habitRecord.achieved}}</p>
+            <p>Your accompl: {{habit.target_number}}</p>
+            <a href="{% url 'editRecord' habitRecord.id %}">Edit &nbsp </a> 
+            <a href="{% url 'deleteRecord' habitRecord.id %}">Delete</a> <br><br>
+            <small>Goal: {{habit.target}}</small> <br>
+            {% if habitRecord.achieved >=  habit.target_number %}
+                <small>Good job</small>
+            {% else %}
+                <small>You need more</small>
+            {% endif %}
+            <hr>
+        {% endfor %}
+        
+    </div>
+</div>
+
+
+
+{%endblock%}
