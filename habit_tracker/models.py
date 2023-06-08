@@ -30,7 +30,7 @@ class HabitRecord(models.Model):
         auto_now=False,
         blank=False,
         null=False,
-        default=timezone.now(),
+        default=timezone.now,
     )
     achieved = models.IntegerField(default=0, null=False)
 
